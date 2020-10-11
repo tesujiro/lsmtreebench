@@ -11,23 +11,20 @@ import (
 )
 
 func benchGolangLevelDB_Get(b *testing.B, options *db.Options) {
+	d, err := leveldb.Open("testdata-leveldb", options)
+	if err != nil {
+		fmt.Printf("Open failed: %v", err)
+	}
+	defer d.Close()
 
-	b.Run("SSD", func(b *testing.B) {
-		d, err := leveldb.Open("testdata-leveldb", options)
-		if err != nil {
-			fmt.Printf("Open failed: %v", err)
-		}
-		defer d.Close()
+	set := func(k, v []byte) error {
+		return d.Set(k, v, nil)
+	}
+	get := func(k []byte) ([]byte, error) {
+		return d.Get(k, nil)
+	}
 
-		set := func(k, v []byte) error {
-			return d.Set(k, v, nil)
-		}
-		get := func(k []byte) ([]byte, error) {
-			return d.Get(k, nil)
-		}
-
-		benchmarkGet(b, set, get)
-	})
+	benchmarkGet(b, set, get)
 }
 
 func BenchmarkGet_GolangLevelDB(b *testing.B) {

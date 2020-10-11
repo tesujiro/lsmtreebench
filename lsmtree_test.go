@@ -10,8 +10,8 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 	size := b.N
 	keys := make([]string, size)
 	for i := 0; i < b.N; i++ {
-		key := fmt.Sprintf("key%.5d", i)
-		val := fmt.Sprintf("val%.5d", i)
+		key := fmt.Sprintf("key%.8d", i)
+		val := fmt.Sprintf("val%.8d", i)
 		keys[i] = key
 
 		err := set([]byte(key), []byte(val))
