@@ -26,15 +26,13 @@ func benchGoLevelDB_Get(b *testing.B, options *opt.Options) {
 }
 
 func BenchmarkGet_syndtrGoLevelDB(b *testing.B) {
-	b.StopTimer()
-
 	b.Run("SSD(Bloom:No)", func(b *testing.B) {
 		benchGoLevelDB_Get(b, nil)
 	})
 
 	b.Run("SSD(Bloom:4)", func(b *testing.B) {
 		o := &opt.Options{
-			Filter: filter.NewBloomFilter(10),
+			Filter: filter.NewBloomFilter(4),
 		}
 		benchGoLevelDB_Get(b, o)
 	})

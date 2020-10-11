@@ -23,7 +23,7 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 		keys[i], keys[j] = keys[j], keys[i]
 	})
 
-	b.StartTimer()
+	b.ResetTimer()
 
 	for _, key := range keys {
 		g, err := get([]byte(key))

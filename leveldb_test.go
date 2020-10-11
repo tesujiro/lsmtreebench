@@ -5,12 +5,12 @@ import (
 	"testing"
 
 	"github.com/golang/leveldb"
+	"github.com/golang/leveldb/bloom"
 	"github.com/golang/leveldb/db"
 	"github.com/golang/leveldb/memfs"
 )
 
 func benchGolangLevelDB_Get(b *testing.B, options *db.Options) {
-	b.StopTimer()
 
 	b.Run("SSD", func(b *testing.B) {
 		d, err := leveldb.Open("testdata-leveldb", options)
@@ -33,12 +33,15 @@ func benchGolangLevelDB_Get(b *testing.B, options *db.Options) {
 func BenchmarkGet_GolangLevelDB(b *testing.B) {
 	b.Run("Memory", func(b *testing.B) {
 		o := &db.Options{
-			FileSystem: memfs.New(),
+			FileSystem:   memfs.New(),
+			FilterPolicy: bloom.FilterPolicy(10),
 		}
 		benchGolangLevelDB_Get(b, o)
 	})
-	b.Run("SSD", func(b *testing.B) {
-		o := &db.Options{}
+	b.Run("SSD(Bloom:10)", func(b *testing.B) {
+		o := &db.Options{
+			FilterPolicy: bloom.FilterPolicy(10),
+		}
 		benchGolangLevelDB_Get(b, o)
 	})
 }
