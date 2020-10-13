@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/cockroachdb/pebble"
+	"github.com/cockroachdb/pebble/vfs"
 )
 
 func benchCockloacdbPebble_Get(b *testing.B, options *pebble.Options) {
@@ -24,10 +25,16 @@ func benchCockloacdbPebble_Get(b *testing.B, options *pebble.Options) {
 		return value, err
 	}
 
-	benchmarkGet(b, set, get)
+	benchmarkGet(b, set, get, nil)
 }
 
 func BenchmarkGet_pebble(b *testing.B) {
+	b.Run("Memory", func(b *testing.B) {
+		o := &pebble.Options{
+			FS: vfs.NewMem(),
+		}
+		benchCockloacdbPebble_Get(b, o)
+	})
 	b.Run("SSD", func(b *testing.B) {
 		o := &pebble.Options{}
 		benchCockloacdbPebble_Get(b, o)

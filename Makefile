@@ -1,5 +1,5 @@
 bench:
-	go test -bench . -benchmem -test.timeout 60m
+	go test -bench . -benchmem -test.timeout 10m
 
 test:
 	go vet

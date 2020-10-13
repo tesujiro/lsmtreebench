@@ -22,7 +22,7 @@ func benchGoLevelDB_Get(b *testing.B, options *opt.Options) {
 	get := func(k []byte) ([]byte, error) {
 		return db.Get(k, nil)
 	}
-	benchmarkGet(b, set, get)
+	benchmarkGet(b, set, get, nil)
 }
 
 func BenchmarkGet_syndtrGoLevelDB(b *testing.B) {

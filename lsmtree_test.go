@@ -6,7 +6,8 @@ import (
 	"testing"
 )
 
-func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte) ([]byte, error)) {
+func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte) ([]byte, error), commit func() error) {
+	//fmt.Printf("b.N:%v\n", b.N)
 	size := b.N
 	keys := make([]string, size)
 	for i := 0; i < b.N; i++ {
@@ -17,11 +18,20 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 		err := set([]byte(key), []byte(val))
 		if err != nil {
 			fmt.Printf("Set(%q): %v\n", key, err)
+			return
 		}
 	}
 	rand.Shuffle(len(keys), func(i, j int) {
 		keys[i], keys[j] = keys[j], keys[i]
 	})
+
+	if commit != nil {
+		err := commit()
+		if err != nil {
+			fmt.Printf("Commit: %v\n", err)
+			return
+		}
+	}
 
 	b.ResetTimer()
 
@@ -29,6 +39,7 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 		g, err := get([]byte(key))
 		if err != nil {
 			fmt.Printf("Get(%q): %v\n", key, err)
+			return
 		}
 		_ = g
 	}

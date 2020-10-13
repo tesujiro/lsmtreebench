@@ -24,7 +24,7 @@ func benchGolangLevelDB_Get(b *testing.B, options *db.Options) {
 		return d.Get(k, nil)
 	}
 
-	benchmarkGet(b, set, get)
+	benchmarkGet(b, set, get, nil)
 }
 
 func BenchmarkGet_GolangLevelDB(b *testing.B) {
