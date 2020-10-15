@@ -51,6 +51,11 @@ func benchBadgerDB_Get(b *testing.B, options badger.Options) {
 func BenchmarkGet_BadgerDB(b *testing.B) {
 	b.Run("Memory", func(b *testing.B) {
 		o := badger.DefaultOptions("").WithInMemory(true).WithMaxTableSize(64 << 22).WithLoggingLevel(badger.WARNING)
+		//o.Logger = nil1
+		benchBadgerDB_Get(b, o)
+	})
+	b.Run("SSD", func(b *testing.B) {
+		o := badger.DefaultOptions("testdata-badger").WithMaxTableSize(64 << 22).WithLoggingLevel(badger.WARNING)
 		benchBadgerDB_Get(b, o)
 	})
 }
