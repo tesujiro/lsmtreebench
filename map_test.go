@@ -15,6 +15,7 @@ func benchGolangMap_Get(b *testing.B) {
 	get := func(k []byte) ([]byte, error) {
 		value, ok := db[string(k)]
 		if !ok {
+			fmt.Printf("map for %s not found", k)
 			return value, fmt.Errorf("map for %s not found", k)
 		}
 		return value, nil
