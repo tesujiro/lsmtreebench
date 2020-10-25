@@ -1,20 +1,20 @@
-Using z.Allocator with starting ref: c8a4000000000000
+Using z.Allocator with starting ref: bd09000000000000
 goos: darwin
 goarch: amd64
 pkg: github.com/tesujiro/lsmtreebench
-BenchmarkGet_BadgerDB/Memory-4   	  287636	      4584 ns/op	    2568 B/op	      11 allocs/op
-BenchmarkGet_BadgerDB/SSD-4      	  214237	      4778 ns/op	    3235 B/op	      11 allocs/op
-BenchmarkGet_Bitcask/SSD()-4     	  174421	      7054 ns/op	      80 B/op	       3 allocs/op
-BenchmarkGet_Bolt/SSD-4          	  584198	      2240 ns/op	     600 B/op	      10 allocs/op
-BenchmarkGet_BuntDB/Memory-4     	 1000000	      2481 ns/op	     128 B/op	       5 allocs/op
-BenchmarkGet_BuntDB/SSD-4        	  548721	      2301 ns/op	     128 B/op	       5 allocs/op
-BenchmarkGet_syndtrGoLevelDB/SSD(Bloom:No)-4         	  369634	      4053 ns/op	     608 B/op	      11 allocs/op
-BenchmarkGet_syndtrGoLevelDB/SSD(Bloom:4)-4          	  322576	      4429 ns/op	     691 B/op	      12 allocs/op
-BenchmarkGet_syndtrGoLevelDB/SSD(Bloom:10)-4         	  294650	      4745 ns/op	     751 B/op	      13 allocs/op
-BenchmarkGet_GolangLevelDB/Memory-4                  	  397479	      8120 ns/op	    9201 B/op	      10 allocs/op
-BenchmarkGet_GolangLevelDB/SSD(Bloom:10)-4           	  445239	     12203 ns/op	    8435 B/op	      10 allocs/op
-BenchmarkGet_GolangMap/Memory-4                      	 3164194	       487 ns/op	      16 B/op	       1 allocs/op
-BenchmarkGet_pebble/Memory-4                         	  623713	      8686 ns/op	    2025 B/op	       6 allocs/op
-BenchmarkGet_pebble/SSD-4                            	  478575	     10021 ns/op	    1989 B/op	       6 allocs/op
+BenchmarkGet_BadgerDB/Memory-4   	  369132	      3519 ns/op	    1385 B/op	      11 allocs/op
+BenchmarkGet_BadgerDB/SSD-4      	  386283	      3853 ns/op	    1343 B/op	      11 allocs/op
+BenchmarkGet_Bitcask/SSD()-4     	  760893	      1738 ns/op	      64 B/op	       2 allocs/op
+BenchmarkGet_Bolt/SSD-4          	  483648	      2231 ns/op	     600 B/op	      10 allocs/op
+BenchmarkGet_BuntDB/Memory-4     	 1000000	      2606 ns/op	     128 B/op	       5 allocs/op
+BenchmarkGet_BuntDB/SSD-4        	  945572	      2836 ns/op	     129 B/op	       5 allocs/op
+BenchmarkGet_syndtrGoLevelDB/SSD(Bloom:No)-4         	  354909	      4139 ns/op	     669 B/op	      11 allocs/op
+BenchmarkGet_syndtrGoLevelDB/SSD(Bloom:4)-4          	  249942	      4018 ns/op	     531 B/op	      10 allocs/op
+BenchmarkGet_syndtrGoLevelDB/SSD(Bloom:10)-4         	  489242	      6903 ns/op	     822 B/op	      14 allocs/op
+BenchmarkGet_GolangLevelDB/Memory-4                  	  343797	      7269 ns/op	    7565 B/op	       9 allocs/op
+BenchmarkGet_GolangLevelDB/SSD(Bloom:10)-4           	  248720	      8994 ns/op	    5895 B/op	       7 allocs/op
+BenchmarkGet_GolangMap/Memory-4                      	 3014226	       444 ns/op	      78 B/op	       1 allocs/op
+BenchmarkGet_pebble/Memory-4                         	  706947	      9055 ns/op	    2008 B/op	       6 allocs/op
+BenchmarkGet_pebble/SSD-4                            	  224412	     53393 ns/op	    1990 B/op	       6 allocs/op
 PASS
-ok  	github.com/tesujiro/lsmtreebench	103.331s
+ok  	github.com/tesujiro/lsmtreebench	92.222s

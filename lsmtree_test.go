@@ -7,6 +7,8 @@ import (
 )
 
 func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte) ([]byte, error), commit func() error) {
+	//b.ResetTimer()
+	b.StopTimer()
 	//fmt.Printf("b.N:%v\n", b.N)
 	size := b.N
 	keys := make([]string, size)
@@ -33,7 +35,8 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 		}
 	}
 
-	b.ResetTimer()
+	//b.ResetTimer()
+	b.StartTimer()
 
 	for _, key := range keys {
 		g, err := get([]byte(key))
@@ -43,4 +46,5 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 		}
 		_ = g
 	}
+	b.StopTimer()
 }
