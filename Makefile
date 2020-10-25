@@ -1,5 +1,5 @@
 bench:
-	go test -bench . -benchmem -test.timeout 10m
+	go test -bench . -benchmem -test.timeout 10m | tee ./result.txt
 
 test:
 	go vet
