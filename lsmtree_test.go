@@ -46,6 +46,7 @@ func benchmarkGet(b *testing.B, set func([]byte, []byte) error, get func([]byte)
 			fmt.Printf("Get(%q): %v\n", key, err)
 			return
 		}
+		//fmt.Printf("Get(%q): %s\n", key, g)
 		_ = g
 	}
 	b.StopTimer()

@@ -6,6 +6,7 @@ import (
 )
 
 func benchGolangMap_Get(b *testing.B) {
+	b.StopTimer()
 	db := make(map[string][]byte, b.N)
 
 	set := func(k, v []byte) error {

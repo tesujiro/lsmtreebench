@@ -8,6 +8,7 @@ import (
 )
 
 func benchBitcask_Get(b *testing.B, options ...bitcask.Option) {
+	b.StopTimer()
 	db, err := bitcask.Open("testdata-bitcask", options...)
 	if err != nil {
 		fmt.Printf("Open failed: %v", err)

@@ -11,6 +11,7 @@ import (
 )
 
 func benchGolangLevelDB_Get(b *testing.B, options *db.Options) {
+	b.StopTimer()
 	d, err := leveldb.Open("testdata-leveldb", options)
 	if err != nil {
 		fmt.Printf("Open failed: %v", err)

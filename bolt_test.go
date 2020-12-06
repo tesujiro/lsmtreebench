@@ -9,6 +9,7 @@ import (
 )
 
 func benchBolt_Get(b *testing.B, options *bolt.Options) {
+	b.StopTimer()
 	db, err := bolt.Open("testdata-bolt", 0600, options)
 	if err != nil {
 		log.Fatal(err)

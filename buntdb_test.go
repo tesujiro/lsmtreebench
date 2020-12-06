@@ -8,6 +8,7 @@ import (
 )
 
 func benchBuntDB_Get(b *testing.B, path string) {
+	b.StopTimer()
 	db, err := buntdb.Open(path)
 	if err != nil {
 		log.Fatal(err)

@@ -9,6 +9,7 @@ import (
 )
 
 func benchCockloacdbPebble_Get(b *testing.B, options *pebble.Options) {
+	b.StopTimer()
 	db, err := pebble.Open("testdata-pebble", options)
 	if err != nil {
 		fmt.Printf("Open failed: %v", err)

@@ -9,6 +9,7 @@ import (
 )
 
 func benchBadgerDB_Get(b *testing.B, options badger.Options) {
+	b.StopTimer()
 	db, err := badger.Open(options)
 	if err != nil {
 		log.Fatal(err)
@@ -57,7 +58,8 @@ func BenchmarkGet_BadgerDB(b *testing.B) {
 		})
 	*/
 	b.Run("SSD", func(b *testing.B) {
-		o := badger.DefaultOptions("testdata-badger").WithMaxTableSize(64 << 22).WithLoggingLevel(badger.WARNING)
+		//o := badger.DefaultOptions("testdata-badger").WithMaxTableSize(64 << 22).WithLoggingLevel(badger.WARNING)
+		o := badger.DefaultOptions("testdata-badger").WithMaxTableSize(64 << 24).WithLoggingLevel(badger.WARNING)
 		benchBadgerDB_Get(b, o)
 	})
 }

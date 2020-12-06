@@ -12,6 +12,7 @@ import (
 )
 
 func benchGoLevelDB_Get(b *testing.B, options *opt.Options) {
+	b.StopTimer()
 	db, err := leveldb.OpenFile("testdata-goleveldb", options)
 	if err != nil {
 		fmt.Printf("Open failed: %v", err)
@@ -47,6 +48,7 @@ func BenchmarkGet_syndtrGoLevelDB(b *testing.B) {
 }
 
 func benchGoLevelDB_Range(b *testing.B, options *opt.Options) {
+	b.StopTimer()
 	db, err := leveldb.OpenFile("testdata-goleveldb", options)
 	if err != nil {
 		fmt.Printf("Open failed: %v", err)
