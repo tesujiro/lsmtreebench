@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/prologic/bitcask"
+	"git.mills.io/prologic/bitcask"
 )
 
 func benchBitcask_Get(b *testing.B, options ...bitcask.Option) {
